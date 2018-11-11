@@ -1,0 +1,38 @@
+{% extends 'main_templates/base.html' %}
+{% block content %}
+<h3>{{learn_table}}</h3>
+<table class="table table-bordered table-dark">
+  <thead>
+    <tr>
+      <th scope="col">ФИО</th>
+      {%for date_colum in date_colums%}
+		<th scope="col">{{date_colum}}</th>
+      {% endfor %}
+      
+      
+    </tr>
+  </thead>
+  <tbody>
+  	{% for pupil in schl_class.in_class.all %}
+  		<tr>
+  			<td>{{pupil}}</td>
+	      	{% for date_colum in date_colums %}
+				<td>
+					{%for mark in pupil.get_marks.all %}
+						{%if date_colum == mark.mark_date %}
+							{%for pip in mark.pips.all %}
+								{{pip.pips}}
+								{%if not forloop.last%}
+								,
+								{%endif%}
+							{% endfor %}
+						{%endif%}
+					{% endfor %}
+				</td>
+	      	{% endfor %}
+	    </tr>
+  	{%endfor%}
+  </tbody>
+ </table>
+	
+{% endblock content %}

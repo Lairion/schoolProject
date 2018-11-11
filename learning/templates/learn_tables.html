@@ -1,0 +1,16 @@
+{% extends 'main_templates/base.html' %}
+{% block content %}
+	<div class="container">
+		{% for table in tables %}
+
+		<a href="{{table.get_url_obj}}">
+			<div class="alert alert-dark" role="alert">
+			  {{table}}
+			</div>
+		</a>
+			{# <a href="table.get_url_obj"><button class="btn btn-primary" style="width:100%">{{table}}</button></a> #}
+		{% endfor %}
+	</div>
+		
+	
+{% endblock content %}
